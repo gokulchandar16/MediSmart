@@ -56,8 +56,9 @@ class MediSmartAI:
         print("Loading FLAN-T5...")
 
         self.generator = pipeline(
-            "text2text-generation",
-            model="google/flan-t5-small"
+        "text-generation",
+        model="google/flan-t5-small"
+)
         )
 
         print("MediSmart AI ready!")
