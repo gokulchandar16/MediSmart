@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "topic": "Fever",
+    "content": "Fever is a temporary increase in body temperature, often associated with infections. Common symptoms can include feeling hot, chills, sweating, headache, and weakness. Staying hydrated and getting adequate rest can be helpful. Persistent, very high, or concerning fever should be evaluated by a healthcare professional."
+  },
+  {
+    "id": 2,
+    "topic": "Common Cold",
+    "content": "The common cold is a viral infection that commonly causes a runny or blocked nose, sneezing, sore throat, cough, and mild fatigue. Rest, fluids, and symptomatic care may help. Antibiotics do not treat viral colds."
+  },
+  {
+    "id": 3,
+    "topic": "Headache",
+    "content": "Headaches can have many causes, including dehydration, stress, lack of sleep, eye strain, or infections. Rest, hydration, and addressing common triggers may help. A sudden severe headache or headache associated with serious neurological symptoms requires urgent medical evaluation."
+  },
+  {
+    "id": 4,
+    "topic": "Dehydration",
+    "content": "Dehydration occurs when the body loses more fluids than it takes in. Possible symptoms include thirst, dry mouth, fatigue, dizziness, and reduced urination. Drinking appropriate fluids can help mild dehydration. Severe dehydration may require urgent medical care."
+  },
+  {
+    "id": 5,
+    "topic": "Healthy Diet",
+    "content": "A balanced diet generally includes vegetables, fruits, whole grains, protein sources, and appropriate amounts of healthy fats. Adequate hydration and limiting excessive added sugar, salt, and highly processed foods can support overall health."
+  },
+  {
+    "id": 6,
+    "topic": "Exercise",
+    "content": "Regular physical activity can support cardiovascular health, muscular strength, fitness, and overall wellbeing. A combination of aerobic activity and muscle-strengthening exercise is commonly recommended, with activity levels adjusted according to individual ability and health status."
+  },
+  {
+    "id": 7,
+    "topic": "Sleep",
+    "content": "Adequate sleep supports physical health, cognitive function, mood, and recovery. Maintaining a consistent sleep schedule, reducing excessive screen exposure before bedtime, and keeping a comfortable sleep environment may support better sleep."
+  }
+]
