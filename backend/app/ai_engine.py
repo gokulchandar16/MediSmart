@@ -3,8 +3,9 @@ import os
 
 import faiss
 import numpy as np
+import torch
 from sentence_transformers import SentenceTransformer
-from transformers import pipeline
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
 
 BASE_DIR = os.path.dirname(
@@ -21,7 +22,9 @@ DATA_PATH = os.path.join(
 
 
 class MediSmartAI:
+
     def __init__(self):
+
         print("Loading MiniLM model...")
 
         self.embedding_model = SentenceTransformer(
@@ -53,12 +56,14 @@ class MediSmartAI:
 
         self.index.add(embeddings)
 
-        print("Loading FLAN-T5...")
+        print("Loading FLAN-T5 model...")
 
-        self.generator = pipeline(
-        "text-generation",
-        model="google/flan-t5-small"
-)
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            "google/flan-t5-small"
+        )
+
+        self.model = AutoModelForSeq2SeqLM.from_pretrained(
+            "google/flan-t5-small"
         )
 
         print("MediSmart AI ready!")
@@ -100,29 +105,42 @@ class MediSmartAI:
         prompt = f"""
 You are MediSmart, an educational medical information assistant.
 
-Use only the provided context to answer the user's question.
+Use the following medical information to answer the question.
 
-Context:
+Medical information:
 {context}
 
 Question:
 {query}
 
-Provide a concise and easy-to-understand answer.
+Give a concise, clear answer.
 Do not diagnose the user.
-If the information is insufficient, say that the user should consult a qualified healthcare professional.
+If the information is insufficient, recommend consulting a qualified healthcare professional.
 
 Answer:
 """
 
-        response = self.generator(
+        inputs = self.tokenizer(
             prompt,
-            max_new_tokens=150,
-            do_sample=False
+            return_tensors="pt",
+            truncation=True,
+            max_length=512
+        )
+
+        with torch.no_grad():
+
+            outputs = self.model.generate(
+                **inputs,
+                max_new_tokens=150
+            )
+
+        answer = self.tokenizer.decode(
+            outputs[0],
+            skip_special_tokens=True
         )
 
         return {
             "question": query,
-            "answer": response[0]["generated_text"],
+            "answer": answer,
             "sources": results
         }
